@@ -4,36 +4,40 @@
 package grinnell.edu.GrinProgram;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Map;
-
-import grinnell.edu.Streams.BitInputStream;
 
 /**
- * @author goldberg, takayesu17
+ * @author goldberg, takayesu17, cummings
  *
  */
 public final class grin {
+	
+	private static final boolean debug = true;
+	
+	public static void usage() {
+		System.out.println("Usage: grin <encode|decode> <infile> <outfile>");
+	}
 
 	/**
 	 * @param args
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		
-		//GrinDecoder.decode("data/huffman-example.grin", "data/huffman-example-try.txt");
-
-		Map<Integer, Integer> frequencyMap = new HashMap<Integer, Integer>();
-		Reader infileStream = new StringReader("data/huffman-example.txt");
-		
-		int pointer;
-		while ((pointer = infileStream.read()) != -1) {
-			System.out.println(pointer);
-		};
-		
-		
+		if (debug) {
+			GrinEncoder.encode("data/huffman-example.txt", "data/huffman-example-try.grin");
+			GrinDecoder.decode("data/huffman-example-try.grin", "data/huffman-example-good.txt");
+		} else {
+			if (args.length != 3) {
+				usage();
+			} else {
+				String code = args[0].toLowerCase().trim();
+				if (code.equals("encode")) {
+					GrinEncoder.encode(args[1], args[2]);
+				} else if (code.equals("decode")) {
+					GrinDecoder.decode(args[1], args[2]);
+				} else {
+					usage();
+				}
+			}
+		}
 	}
-
 }

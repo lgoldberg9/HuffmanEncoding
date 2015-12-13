@@ -28,13 +28,10 @@ public class EmptyNode implements Node {
 	public boolean isHuffmanNode() { return false; }
 
 	@Override
-	public Map<Integer, String> inorderTraversalToBinaryMap() { return null; }
+	public void inorderTraversalToBinaryMap(Map<Integer, String> pathMap, String path) {}
 	
-	private void inorderTraversalToBinaryMap(Node currentNode, Map<Integer, String> pathMap, String path)
-	{}
-
 	@Override
 	public int compareTo(Node o) {
-		return 0;
+		return 1;
 	}
 }

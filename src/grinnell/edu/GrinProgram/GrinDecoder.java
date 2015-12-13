@@ -10,10 +10,8 @@ import grinnell.edu.Utils.HuffmanTree;
 
 public class GrinDecoder {
 	
-	private static void writeToFile(List<Character> charList, String outfile) 
-			throws FileNotFoundException {
+	private static void writeToFile(List<Character> charList, String outfile) throws FileNotFoundException {
 		PrintStream output = new PrintStream(outfile);
-		
 		for (Character ch : charList) {
 			output.write(ch);
 		}
@@ -25,12 +23,15 @@ public class GrinDecoder {
 		BitInputStream inputStream = new BitInputStream(infile);
 		
 		if (inputStream.readBits(32) != 1846) {
+			// File is not .grin format.
 			throw new IllegalArgumentException();
 		} else {
 			int sizeOfCharMap = inputStream.readBits(32);
 			Map<Integer, Integer> charMap = new HashMap<Integer, Integer>(sizeOfCharMap);
 			for (int i = 0; i < sizeOfCharMap; i++) {
-				charMap.put(inputStream.readBits(32), inputStream.readBits(32));
+				int character = inputStream.readBits(32);
+				int freq = inputStream.readBits(32);
+				charMap.put(character, freq);
 			}
 			HuffmanTree HASSLEHOFF = new HuffmanTree(charMap);
 			try {

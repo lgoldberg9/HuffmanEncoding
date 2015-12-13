@@ -1,7 +1,6 @@
 package grinnell.edu.Utils;
 
 import java.util.Map;
-import java.util.TreeMap;
 
 public class HuffmanNode implements Node, Comparable<Node> {
 	private int summaryFreq;
@@ -53,17 +52,11 @@ public class HuffmanNode implements Node, Comparable<Node> {
 	public boolean isHuffmanNode() { return true; }
 
 	@Override
-	public Map<Integer, String> inorderTraversalToBinaryMap() {
-		Map<Integer,String> pathMap = new TreeMap<Integer, String>();
-		inorderTraversalToBinaryMap(this, pathMap, "");
-		return pathMap;
-	}
-	
-	private void inorderTraversalToBinaryMap(Node currentNode, Map<Integer, String> pathMap, String path) {
+	public void inorderTraversalToBinaryMap(Map<Integer, String> pathMap, String path) {
 		if (isHuffmanNode()) {
-			inorderTraversalToBinaryMap(currentNode.getLeft(), pathMap, path + "0");
-			pathMap.put(currentNode.getCharacter(), path);
-			inorderTraversalToBinaryMap(currentNode.getRight(), pathMap, path + "1");
+			this.left.inorderTraversalToBinaryMap(pathMap, path + "0");
+			pathMap.put(this.character, path);
+			this.right.inorderTraversalToBinaryMap(pathMap, path + "1");
 		}
 	}
 

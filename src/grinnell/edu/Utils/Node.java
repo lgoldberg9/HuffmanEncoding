@@ -51,6 +51,6 @@ public interface Node extends Comparable<Node> {
 	 * and each string is the binary representation of the path taken to that character.
 	 * @return treeMap, a path map of all the characters from the root.
 	 */
-	public Map<Integer, String> inorderTraversalToBinaryMap();
+	public void inorderTraversalToBinaryMap(Map<Integer, String> pathMap, String path);
 	
 }
