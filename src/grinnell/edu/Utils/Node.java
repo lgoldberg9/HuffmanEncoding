@@ -2,7 +2,7 @@ package grinnell.edu.Utils;
 
 import java.util.Map;
 
-public interface Node {
+public interface Node extends Comparable<Node> {
 
 	/**
 	 * 

@@ -33,4 +33,8 @@ public class EmptyNode implements Node {
 	private void inorderTraversalToBinaryMap(Node currentNode, Map<Integer, String> pathMap, String path)
 	{}
 
+	@Override
+	public int compareTo(Node o) {
+		return 0;
+	}
 }

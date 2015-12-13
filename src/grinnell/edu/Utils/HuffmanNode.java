@@ -3,7 +3,7 @@ package grinnell.edu.Utils;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class HuffmanNode implements Node {
+public class HuffmanNode implements Node, Comparable<Node> {
 	private int summaryFreq;
 	private int character;
 	private Node left;
@@ -64,6 +64,17 @@ public class HuffmanNode implements Node {
 			inorderTraversalToBinaryMap(currentNode.getLeft(), pathMap, path + "0");
 			pathMap.put(currentNode.getCharacter(), path);
 			inorderTraversalToBinaryMap(currentNode.getRight(), pathMap, path + "1");
+		}
+	}
+
+	@Override
+	public int compareTo(Node o) {
+		if (o.getSummaryFreq() > this.summaryFreq) {
+			return -1;
+		} else if (o.getSummaryFreq() < this.summaryFreq) {
+			return 1;
+		} else {
+			return 0;
 		}
 	}
 }
